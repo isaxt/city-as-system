@@ -1,0 +1,412 @@
+body {
+  margin: 0;
+  overflow: hidden; /* to prevent scrollbars */
+  background: rgb(11, 118, 195); /* background for loader */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.start{
+  position:relative;
+  top:56px;
+  width:max-content; 
+  right:50px;
+  color:white;
+  font-family:sans-serif;
+  font-weight:100;
+  font-size:large;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 50px;
+  height: 50px; 
+  margin: auto;
+  opacity: 1;
+  transition: opacity 1s ease-out; /* for fade-out effect */
+}
+
+.loader.fade-out {
+    opacity: 0;
+}
+
+.loader.hidden {
+    display: none;
+}
+
+.loader .circle {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  opacity: 0;
+  transform: rotate(225deg);
+  animation-iteration-count: infinite;
+  animation-name: orbit;
+  animation-duration: 5.5s;
+}
+.loader .circle:after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 0 9px rgba(255, 255, 255, .3);
+}
+.loader .circle:nth-child(2) {
+  animation-delay: 240ms;
+}
+.loader .circle:nth-child(3) {
+  animation-delay: 480ms;
+}
+.loader .circle:nth-child(4) {
+  animation-delay: 720ms;
+}
+.loader .circle:nth-child(5) {
+  animation-delay: 960ms;
+}
+.loader .circle:nth-child(6) {
+  animation-delay: 1200ms;
+}
+.loader .circle:nth-child(7) {
+  animation-delay: 1440ms;
+}
+.loader .bg {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  margin-left: -16px;
+  margin-top: -16px;
+  border-radius: 13px;
+  background-color: inherit;
+  animation: bgg 16087ms ease-in alternate infinite;
+}
+
+.graph-container {
+    position: absolute;
+    top: 100px;
+    left: 150px;
+    width: 850px;
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.graph-container.hidden {
+    display: none;
+}
+
+.graph-header {
+    background-color: rgba(40, 40, 40, 0.9);
+    color: white;
+    padding: 8px 12px;
+    cursor: move;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.9rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    user-select: none;
+}
+
+.graph-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-content img {
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    transition: transform 0.2s ease;
+}
+
+.graph-content img:hover {
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none;
+}
+@keyframes orbit {
+  0% {
+    transform: rotate(225deg);
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  7% {
+    transform: rotate(345deg);
+    animation-timing-function: linear;
+  }
+  30% {
+    transform: rotate(455deg);
+    animation-timing-function: ease-in-out;
+  }
+  39% {
+    transform: rotate(690deg);
+    animation-timing-function: linear;
+  }
+  70% {
+    transform: rotate(815deg);
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  75% {
+    transform: rotate(945deg);
+    animation-timing-function: ease-out;
+  }
+  76% {
+    transform: rotate(945deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(945deg);
+    opacity: 0;
+  }
+}
+
+/* desktop styles */
+.desktop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0078D4; /* fallback color */
+    background-image: url('assets/desktop_img.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+
+.desktop.hidden {
+    display: none;
+    opacity: 0;
+}
+
+/* desktop icons */
+.desktop-icons-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* align icons to the left */
+    gap: 15px; /* space between icons */
+    flex-grow: 1; /* allow container to take available space */
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px; /* fixed width for icon area */
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    user-select: none; /* prevent text selection */
+}
+
+.desktop-icon:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.desktop-icon img {
+    width: 32px; /* standard icon size */
+    height: 32px;
+    margin-bottom: 5px;
+}
+
+/* taskbar styles */
+.taskbar {
+    width: 100%;
+    height: 48px;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+
+.start-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px; /* slightly smaller than taskbar height */
+    width: 40px;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+}
+
+.start-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.start-button img {
+    width: 24px; /* standard Windows logo size */
+    height: 24px;
+}
+
+.taskbar-apps {
+    display: flex;
+    gap: 5px;
+    flex-grow: 1; /* take up available space */
+}
+
+.taskbar-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+}
+
+.taskbar-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.taskbar-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.system-tray {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 0.9em;
+    gap: 10px;
+}
+
+.graph-container {
+    position: absolute;
+    top: 60px;
+    left: 120px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    z-index: 10;
+}
+
+.graph-container img {
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.hidden {
+    display: none;
+}
+
+/* responsive adjustments */
+@media (max-width: 768px) {
+    .desktop-icons-container {
+        padding: 5px;
+        align-items: center; /* center icons on smaller screens */
+        flex-direction: row; /* arrange icons in a row */
+        flex-wrap: wrap; /* allow icons to wrap */
+        justify-content: center;
+    }
+
+    .desktop-icon {
+        width: 60px;
+        font-size: 0.7em;
+    }
+
+    .desktop-icon img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .taskbar {
+        height: 40px;
+        padding: 0 2px;
+    }
+
+    .start-button, .taskbar-icon {
+        height: 36px;
+        width: 36px;
+    }
+
+    .start-button img, .taskbar-icon img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .system-tray {
+        font-size: 0.8em;
+        padding: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .desktop-icons-container {
+        gap: 10px;
+    }
+
+    .desktop-icon {
+        width: 50px;
+        font-size: 0.65em;
+    }
+
+    .desktop-icon img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .taskbar {
+        height: 36px;
+    }
+
+    .start-button, .taskbar-icon {
+        height: 32px;
+        width: 32px;
+    }
+
+    .start-button img, .taskbar-icon img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .system-tray {
+        font-size: 0.75em;
+        padding: 0 3px;
+        gap: 5px;
+    }
+}
