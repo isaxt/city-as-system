@@ -19,6 +19,7 @@ body {
   font-size:large;
 }
 
+/* loader animation*/
 .loader {
   position: absolute;
   top: 50%;
@@ -87,60 +88,7 @@ body {
   animation: bgg 16087ms ease-in alternate infinite;
 }
 
-.graph-container {
-    position: absolute;
-    top: 100px;
-    left: 150px;
-    width: 850px;
-    background-color: rgba(0, 0, 0, 0.85);
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    display: flex;
-    flex-direction: column;
-    z-index: 100;
-    backdrop-filter: blur(10px);
-}
-
-.graph-container.hidden {
-    display: none;
-}
-
-.graph-header {
-    background-color: rgba(40, 40, 40, 0.9);
-    color: white;
-    padding: 8px 12px;
-    cursor: move;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.9rem;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    user-select: none;
-}
-
-.graph-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 15px;
-    justify-content: center;
-    align-items: center;
-}
-
-.graph-content img {
-    width: 250px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.2);
-    transition: transform 0.2s ease;
-}
-
-.graph-content img:hover {
-    transform: scale(1.05);
-}
-
-.hidden {
-    display: none;
-}
+/* keyframes */
 @keyframes orbit {
   0% {
     transform: rotate(225deg);
@@ -178,23 +126,23 @@ body {
   }
 }
 
+@keyframes bgg {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(1.2); opacity: 0.8; }
+}
+
 /* desktop styles */
 .desktop {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100vw;
     height: 100vh;
-    background-color: #0078D4; /* fallback color */
+    background-color: #0078D4;
     background-image: url('assets/desktop_img.png'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     opacity: 1;
     transition: opacity 1s ease-in;
 }
@@ -206,14 +154,16 @@ body {
 
 /* desktop icons */
 .desktop-icons-container {
-    padding: 10px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* align icons to the left */
-    gap: 15px; /* space between icons */
-    flex-grow: 1; /* allow container to take available space */
+    align-items: flex-start;
+    gap: 15px;
 }
 
+/* each icon group */
 .desktop-icon {
     display: flex;
     flex-direction: column;
@@ -228,26 +178,45 @@ body {
 }
 
 .desktop-icon:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
+/* icon image */
 .desktop-icon img {
     width: 32px; /* standard icon size */
     height: 32px;
     margin-bottom: 5px;
 }
 
-/* taskbar styles */
+/* icon label text */
+.desktop-icon span {
+  margin-left: 6px;
+  line-height: 1.1;
+}
+
+/* taskbar */
 .taskbar {
+    display: none; /* start hidden */
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 48px;
     background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px); 
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     padding: 0 5px;
     box-sizing: border-box;
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.5s ease; /* smooth fade-in */
+}
+
+.taskbar.show {
+    display: flex; /* make visible */
+    opacity: 1;    /* fade in */
 }
 
 .start-button {
@@ -266,77 +235,97 @@ body {
 }
 
 .start-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .start-button img {
-    width: 24px; /* standard Windows logo size */
-    height: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 .taskbar-apps {
-    display: flex;
-    gap: 5px;
-    flex-grow: 1; /* take up available space */
+  display: flex;
+  gap: 5px;
+  flex-grow: 1; /*takes up available space*/
 }
 
 .taskbar-icon {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    width: 40px;
-    border-radius: 2px;
-    transition: background-color 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
 }
 
 .taskbar-icon:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .taskbar-icon img {
-    width: 24px;
-    height: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 .system-tray {
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-    font-size: 0.9em;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 0.9em;
+  gap: 10px;
 }
 
+/* Graph Popups */
 .graph-container {
-    position: absolute;
-    top: 60px;
-    left: 120px;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    z-index: 10;
+  position: absolute;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.85);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  backdrop-filter: blur(10px);
 }
 
-.graph-container img {
-    width: 250px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+.graph-container.hidden {
+  display: none;
 }
 
-.hidden {
-    display: none;
+.graph-header {
+  background-color: rgba(40, 40, 40, 0.9);
+  color: white;
+  padding: 8px 12px;
+  cursor: move;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 0.9rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  user-select: none;
 }
 
-/* responsive adjustments */
+.graph-content {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.graph-content img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  transition: transform 0.2s ease;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .desktop-icons-container {
+  .desktop-icons-container {
         padding: 5px;
         align-items: center; /* center icons on smaller screens */
         flex-direction: row; /* arrange icons in a row */
@@ -344,69 +333,69 @@ body {
         justify-content: center;
     }
 
-    .desktop-icon {
-        width: 60px;
-        font-size: 0.7em;
-    }
+  .desktop-icon {
+    width: 60px;
+    font-size: 0.7em;
+  }
 
-    .desktop-icon img {
-        width: 28px;
-        height: 28px;
-    }
+  .desktop-icon img {
+    width: 28px;
+    height: 28px;
+  }
 
-    .taskbar {
-        height: 40px;
-        padding: 0 2px;
-    }
+  .taskbar {
+    height: 40px;
+    padding: 0 2px;
+  }
 
-    .start-button, .taskbar-icon {
-        height: 36px;
-        width: 36px;
-    }
+  .start-button, .taskbar-icon {
+    height: 36px;
+    width: 36px;
+  }
 
-    .start-button img, .taskbar-icon img {
-        width: 20px;
-        height: 20px;
-    }
+  .start-button img, .taskbar-icon img {
+    width: 20px;
+    height: 20px;
+  }
 
-    .system-tray {
-        font-size: 0.8em;
-        padding: 0 5px;
-    }
+  .system-tray {
+    font-size: 0.8em;
+    padding: 0 5px;
+  }
 }
 
 @media (max-width: 480px) {
-    .desktop-icons-container {
-        gap: 10px;
-    }
+  .desktop-icons-container {
+    gap: 10px;
+  }
 
-    .desktop-icon {
-        width: 50px;
-        font-size: 0.65em;
-    }
+  .desktop-icon {
+    width: 50px;
+    font-size: 0.65em;
+  }
 
-    .desktop-icon img {
-        width: 24px;
-        height: 24px;
-    }
+  .desktop-icon img {
+    width: 24px;
+    height: 24px;
+  }
 
-    .taskbar {
-        height: 36px;
-    }
+  .taskbar {
+    height: 36px;
+  }
 
-    .start-button, .taskbar-icon {
-        height: 32px;
-        width: 32px;
-    }
+  .start-button, .taskbar-icon {
+    height: 32px;
+    width: 32px;
+  }
 
-    .start-button img, .taskbar-icon img {
-        width: 18px;
-        height: 18px;
-    }
+  .start-button img, .taskbar-icon img {
+    width: 18px;
+    height: 18px;
+  }
 
-    .system-tray {
-        font-size: 0.75em;
-        padding: 0 3px;
-        gap: 5px;
-    }
+  .system-tray {
+    font-size: 0.75em;
+    padding: 0 3px;
+    gap: 5px;
+  }
 }
