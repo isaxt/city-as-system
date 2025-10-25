@@ -399,3 +399,82 @@ body {
     gap: 5px;
   }
 }
+
+
+/* figuring out the photos pop up window */
+.photos-popup {
+  position: absolute;
+  top: 100px;
+  left: 150px;
+  width: 70%;
+  max-width: 900px;
+  height: 70%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 300;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.photos-popup.hidden {
+  display: none;
+}
+
+.photos-header {
+  background: #f3f3f3;
+  color: #000;
+  padding: 10px 15px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  cursor: move;
+}
+
+.photos-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  background-color: #fafafa;
+  gap: 10px;
+}
+
+.photos-gallery {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.photos-gallery img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.placeholder {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #777;
+  margin-top: 20px;
+  font-size: 1rem;
+}
