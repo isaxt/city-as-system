@@ -152,14 +152,13 @@ graphs.forEach(graph => {
 });
 
 // photo app functionality
-const photosIcon = document.querySelector('img[alt="Photos"]').closest('.desktop-icon');
-const photosApp = document.getElementById('photosApp');
-const closePhotos = document.getElementById('closePhotos');
-const gallery = document.getElementById('photosGallery');
+  const photosIcon = document.querySelector('img[alt="Photos"]').closest('.desktop-icon');
+const photosApp = document.getElementById('imagesPopup'); // matches HTML
+const closePhotos = document.getElementById('closeImages'); // matches your close button id
+const photoGrid = document.getElementById('photoGrid'); // container where images go
 
-// ✅ Make sure the folder path matches your actual project structure.
-// If your photos are in /assets/photos/, use that below:
-const photoFiles = [
+  // Example images (replace with your actual image paths)
+  const photos = [
   'IMG_4339.jpg',
   'IMG_4340.jpg',
   'IMG_4341.jpg',
@@ -267,49 +266,32 @@ const photoFiles = [
 ];
 
 function loadGallery() {
-  // clear gallery first so photos don't duplicate
-  gallery.innerHTML = '';
+    photoGrid.innerHTML = '';
+    if (photos.length === 0) {
+      const placeholder = document.createElement('div');
+      placeholder.classList.add('placeholder');
+      placeholder.textContent = 'No photos available';
+      photoGrid.appendChild(placeholder);
+      return;
+    }
 
-  // check if photos exist
-  if (photoFiles.length === 0) {
-    const placeholder = document.createElement('div');
-    placeholder.classList.add('placeholder');
-    placeholder.textContent = 'No photos available';
-    gallery.appendChild(placeholder);
-    return;
-  }
-
-  // Populate with images
-  photoFiles.forEach(file => {
+photos.forEach(file => {
     const img = document.createElement('img');
-
-    // where your images actually live
     img.src = `photos/${file}`;
     img.alt = file;
+    photosGallery.appendChild(img);
+});
+  }
 
-    img.addEventListener('error', () => {
-      img.style.display = 'none';
-      console.error(`Image not found: ${img.src}`);
-    });
-
-    gallery.appendChild(img);
-  });
-}
-
-// Open the Photos window
+// Open / close Photos popup
 photosIcon.addEventListener('click', () => {
   photosApp.classList.toggle('hidden');
-  photosApp.style.top = '100px';
-  photosApp.style.left = '150px';
-  loadGallery();
+  if (!photosApp.classList.contains('hidden')) loadGallery();
 });
+closePhotos.addEventListener('click', () => photosApp.classList.add('hidden'));
 
-// Close the Photos window
-closePhotos.addEventListener('click', () => {
-  photosApp.classList.add('hidden');
-});
 
-// Make the Photos window draggable
+  //makes it the photo pop up draggable
 (function makeDraggable(element, handle) {
   let isDragging = false, offsetX = 0, offsetY = 0;
 
