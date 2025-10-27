@@ -463,6 +463,96 @@ body {
   box-shadow: 0 0 6px rgba(0,0,0,0.1);
   transition: transform 0.2s ease;
 }
+
+/* Substack popup */
+.substack-popup {
+  position: absolute;
+  top: 80px;
+  left: 120px;
+  width: 700px;
+  max-width: 90%;
+  background: #fff;
+  color: #222;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: "Georgia", serif;
+  z-index: 500;
+}
+
+.substack-popup.hidden {
+  display: none;
+}
+
+.substack-header {
+  background: #fafafa;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 600;
+  color: #444;
+  cursor: move;
+}
+
+.substack-content {
+  padding: 30px 40px;
+  overflow-y: auto;
+  max-height: 80vh;
+  line-height: 1.7;
+}
+
+.substack-tag {
+  font-size: 0.75rem;
+  color: #555;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.substack-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: #111;
+}
+
+.substack-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.substack-author {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.substack-content a {
+  color: #000;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.substack-content hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+}
+
+.substack-content strong {
+  font-weight: 600;
+}
+
+.substack-content em {
+  font-style: italic;
+}
+
 .close-btn {
   background: none;
   border: none;
