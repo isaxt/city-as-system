@@ -1,5 +1,5 @@
 # city-as-system
 
-oh god please save me this is so painful
+a web experience that acts as a commentary as my thoughts on the finance world and the culture of smoking
 
-anyways i want to make something...
+with everything become more and more digital... a bit ironic/hypocritical that this is web based...

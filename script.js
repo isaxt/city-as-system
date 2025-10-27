@@ -158,7 +158,7 @@ const closePhotos = document.getElementById('closePhotos');
 const gallery = document.getElementById('photosGallery');
 const placeholder = document.querySelector('.placeholder');
 
-// array of images in you photos folder-- test wsith 5 first
+// array of images in you photos folder-- test with 5 first
 const photoFiles = [
   'IMG_4339.HEIC',
   'IMG_4340.HEIC',
