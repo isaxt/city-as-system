@@ -152,10 +152,11 @@ graphs.forEach(graph => {
 });
 
 // photo app functionality
-  const photosIcon = document.querySelector('img[alt="Photos"]').closest('.desktop-icon');
-const photosApp = document.getElementById('imagesPopup'); // matches HTML
-const closePhotos = document.getElementById('closeImages'); // matches your close button id
-const photoGrid = document.getElementById('photoGrid'); // container where images go
+  const photosApp = document.getElementById('photosApp');
+const closePhotos = document.getElementById('closePhotos');
+const photosGallery = document.getElementById('photosGallery');
+const photosIcon = document.querySelector('img[alt="Photos"]').closest('.desktop-icon');
+
 
   // Example images (replace with your actual image paths)
   const photos = [
@@ -265,42 +266,47 @@ const photoGrid = document.getElementById('photoGrid'); // container where image
     'IMG_4689.jpg'
 ];
 
+// Load gallery images
 function loadGallery() {
-    photoGrid.innerHTML = '';
-    if (photos.length === 0) {
-      const placeholder = document.createElement('div');
-      placeholder.classList.add('placeholder');
-      placeholder.textContent = 'No photos available';
-      photoGrid.appendChild(placeholder);
-      return;
-    }
-
-photos.forEach(file => {
+  photosGallery.innerHTML = '';
+  if (photos.length === 0) {
+    const empty = document.createElement('div');
+    empty.textContent = 'No photos found';
+    empty.style.padding = '20px';
+    photosGallery.appendChild(empty);
+    return;
+  }
+  photos.forEach(file => {
     const img = document.createElement('img');
     img.src = `photos/${file}`;
     img.alt = file;
     photosGallery.appendChild(img);
-});
-  }
+  });
+}
 
-// Open / close Photos popup
+// Open Photos popup
 photosIcon.addEventListener('click', () => {
   photosApp.classList.toggle('hidden');
   if (!photosApp.classList.contains('hidden')) loadGallery();
 });
-closePhotos.addEventListener('click', () => photosApp.classList.add('hidden'));
 
+// Close Photos popup
+closePhotos.addEventListener('click', () => {
+  photosApp.classList.add('hidden');
+});
 
-  //makes it the photo pop up draggable
-(function makeDraggable(element, handle) {
-  let isDragging = false, offsetX = 0, offsetY = 0;
+// Make Photos popup draggable
+function makeDraggable(element, handle) {
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
 
   handle.addEventListener('mousedown', (e) => {
     isDragging = true;
     const rect = element.getBoundingClientRect();
     offsetX = e.clientX - rect.left;
     offsetY = e.clientY - rect.top;
-    element.style.zIndex = 9999;
+    element.style.zIndex = 1000;
   });
 
   document.addEventListener('mouseup', () => isDragging = false);
@@ -311,7 +317,9 @@ closePhotos.addEventListener('click', () => photosApp.classList.add('hidden'));
     element.style.left = `${e.clientX - offsetX}px`;
     element.style.top = `${e.clientY - offsetY}px`;
   });
-})(photosApp, photosApp.querySelector('.photos-header'));
+}
+
+makeDraggable(photosApp, photosApp.querySelector('.photos-header'));
 
 
 // Substack popup functionality

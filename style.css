@@ -279,6 +279,15 @@ body {
   gap: 10px;
 }
 
+/* Match time display to desktop icon text */
+#currentTime {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  color: white;                           /* same as icon labels */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* subtle shadow for contrast */
+  letter-spacing: 0.5px;
+}
+
 /* Graph Popups */
 .graph-container {
   position: absolute;
@@ -402,63 +411,139 @@ body {
 
 
 /* figuring out the photos pop up window */
+/* === Photos App Popup Styling === */
 .photos-popup {
   position: absolute;
-  top: 100px;
+  top: 120px;
   left: 150px;
-  width: 80%;
-  max-width: 1000px;
-  height: 75%;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  width: 700px;
+  height: 500px;
+  background: #f9f9f9;
+  border: 2px solid #c8c8c8;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  z-index: 500;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 20;
 }
 
-.photos-popup.hidden {
+.hidden {
   display: none;
 }
 
+/* Header */
 .photos-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #ddd;
-  padding: 8px 15px;
-  font-weight: 600;
+  background: #ececec;
+  padding: 8px 12px;
+  border-bottom: 1px solid #d0d0d0;
+  border-radius: 10px 10px 0 0;
   cursor: move;
-  user-select: none;
 }
 
+.photos-title {
+  font-weight: bold;
+  color: #333;
+}
+
+.photos-window-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.window-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+}
+
+.window-btn:hover {
+  color: #000;
+}
+
+/* Tabs */
+.photos-tabs {
+  display: flex;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  font-weight: 500;
+}
+
+.tab-btn.active {
+  background: #fff;
+  border-bottom: 2px solid #0078d7;
+  color: #0078d7;
+}
+
+/* Toolbar */
 .photos-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fafafa;
-  border-bottom: 1px solid #eee;
-  padding: 8px 15px;
+  padding: 8px 12px;
+  background: #f4f4f4;
+  border-bottom: 1px solid #d0d0d0;
 }
 
+.view-label {
+  margin-right: 6px;
+  font-size: 14px;
+  color: #444;
+}
+
+.view-dropdown {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.toolbar-btn {
+  margin-left: 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.toolbar-btn:hover {
+  background: #e6e6e6;
+}
+
+/* Gallery */
 .photos-gallery {
   flex: 1;
+  padding: 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
-  padding: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
   overflow-y: auto;
-  background-color: #fff;
 }
 
 .photos-gallery img {
   width: 100%;
-  height: 160px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.2s ease;
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+.photos-gallery img:hover {
+  transform: scale(1.03);
 }
 
 /* Substack popup */

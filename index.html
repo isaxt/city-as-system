@@ -70,19 +70,41 @@
     </div>
 </div>
 
-<!-- photos app popup -->
+<!-- Photos App Popup -->
 <div id="photosApp" class="photos-popup hidden">
   <div class="photos-header">
-    <span>Photos</span>
-    <span>Cigarette Collection-- 10/10 to 10/17</span>
-    <button id="closePhotos" class="close-btn">✕</button>
+    <div class="photos-title">Photos</div>
+    <div class="photos-window-controls">
+      <button class="window-btn minimize-btn">−</button>
+      <button class="window-btn maximize-btn">□</button>
+      <button id="closePhotos" class="window-btn close-btn">✕</button>
+    </div>
   </div>
 
-  <div class="photos-toolbar"> </div>
+  <div class="photos-tabs">
+    <button class="tab-btn active">Collection</button>
+    <button class="tab-btn">Albums</button>
+    <button class="tab-btn">Folders</button>
+  </div>
 
-  <div class="photos-gallery" id="photosGallery">
+  <div class="photos-toolbar">
+    <div class="toolbar-left">
+      <span class="view-label">View By</span>
+      <select class="view-dropdown">
+        <option>October 10, 2025</option>
+        <option>October 14, 2025</option>
+        <option>October 17, 2025</option>
+      </select>
+    </div>
+    <div class="toolbar-right">
+      <button class="toolbar-btn">+ New</button>
+      <button class="toolbar-btn">☰ Select</button>
+      <button class="toolbar-btn">↓ Import</button>
+    </div>
   </div>
-  </div>
+
+  <div class="photos-gallery" id="photosGallery"></div>
+</div>
 
   <!-- Substack article popup -->
 <div id="substackPopup" class="substack-popup hidden">
