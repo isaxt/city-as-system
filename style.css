@@ -137,7 +137,7 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: #0078D4;
-    background-image: url('assets/desktop_img.png'); 
+    background-image: url('./assets/desktop_img.png'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -410,8 +410,7 @@ body {
 }
 
 
-/* figuring out the photos pop up window */
-/* === Photos App Popup Styling === */
+/* photo app pop up styling */
 .photos-popup {
   position: absolute;
   top: 120px;
@@ -432,7 +431,7 @@ body {
   display: none;
 }
 
-/* Header */
+/* header */
 .photos-header {
   display: flex;
   justify-content: space-between;
@@ -466,7 +465,7 @@ body {
   color: #000;
 }
 
-/* Tabs */
+/* tabs */
 .photos-tabs {
   display: flex;
   border-bottom: 1px solid #d0d0d0;
@@ -488,7 +487,7 @@ body {
   color: #0078d7;
 }
 
-/* Toolbar */
+/* toolbar */
 .photos-toolbar {
   display: flex;
   justify-content: space-between;
@@ -524,7 +523,7 @@ body {
   background: #e6e6e6;
 }
 
-/* Gallery */
+/* gallery */
 .photos-gallery {
   flex: 1;
   padding: 10px;
@@ -546,7 +545,7 @@ body {
   transform: scale(1.03);
 }
 
-/* Substack popup */
+/* substack popup */
 .substack-popup {
   position: absolute;
   top: 80px;

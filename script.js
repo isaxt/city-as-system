@@ -158,7 +158,7 @@ const photosGallery = document.getElementById('photosGallery');
 const photosIcon = document.querySelector('img[alt="Photos"]').closest('.desktop-icon');
 
 
-  // Example images (replace with your actual image paths)
+  // images array
   const photos = [
   'IMG_4339.jpg',
   'IMG_4340.jpg',
@@ -266,7 +266,7 @@ const photosIcon = document.querySelector('img[alt="Photos"]').closest('.desktop
     'IMG_4689.jpg'
 ];
 
-// Load gallery images
+// load gallery images
 function loadGallery() {
   photosGallery.innerHTML = '';
   if (photos.length === 0) {
@@ -278,24 +278,24 @@ function loadGallery() {
   }
   photos.forEach(file => {
     const img = document.createElement('img');
-    img.src = `photos/${file}`;
+    img.src = `./photos/${file}`;
     img.alt = file;
     photosGallery.appendChild(img);
   });
 }
 
-// Open Photos popup
+// open photos popup
 photosIcon.addEventListener('click', () => {
   photosApp.classList.toggle('hidden');
   if (!photosApp.classList.contains('hidden')) loadGallery();
 });
 
-// Close Photos popup
+// close photos popup
 closePhotos.addEventListener('click', () => {
   photosApp.classList.add('hidden');
 });
 
-// Make Photos popup draggable
+// make photos popup draggable
 function makeDraggable(element, handle) {
   let isDragging = false;
   let offsetX = 0;
